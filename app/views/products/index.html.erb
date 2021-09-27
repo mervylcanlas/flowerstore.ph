@@ -1,0 +1,17 @@
+<h1>Products</h1>
+
+<% @products.each do |product| %>
+    <p>
+        Product Name: <%= link_to product.product_name, product %> <br>
+        Product Description: <%= product.product_description %> <br>
+        Price: <%= product.price %> <br>
+        <%= link_to "Edit", edit_product_path(product) %>
+        <%= link_to "Destroy", product_path(product),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+    </p>
+<% end %>
+
+<p>
+    <%= link_to "Add New Product", new_product_path %>
+</p>

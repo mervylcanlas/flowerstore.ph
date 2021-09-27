@@ -1,0 +1,31 @@
+<h1>Orders List</h1>
+<table>
+    <tr>
+        <th> Order ID </th>
+        <th> Product Name </th>
+        <th> Price </th>
+    </tr>
+    <% @orders.each do |order| %>
+        <tr>
+            <td> <%= order.id %> </td>
+            <td> <%= order.product.product_name %> </td>
+            <td> <%= order.price %> </td>
+        </tr>
+    <% end %>
+</table>
+
+<h1>Orders Summary</h1>
+<table>
+    <tr>
+        <th> Product Name </th>
+        <th> Orders </th>
+        <th> Total Price </th>
+    </tr>
+    <% @summary.each do |i| %>
+        <tr>
+            <td> <%= Product.find(i[0]).product_name %> </td>
+            <td> <%= i[1] %> </td>
+            <td> <%= Order.where(product_id: i[0]).sum(:price) %></td>
+        </tr>
+    <% end %>
+</table>
